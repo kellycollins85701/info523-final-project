@@ -1,0 +1,75 @@
+---
+title:  'Homework 2'
+subtitle: 'INFO 523'
+author:
+- name: Student -  [Your name]
+  affiliation: [Your affiliation]
+- name: Instructor -  Cristian Román-Palacios
+  affiliation: School of Information, University of Arizona, Tucson, AZ
+tags: [R, RStudio, HW2]
+output: html_document
+
+---
+
+---------------
+
+
+#### Q
+
+
+```{r}
+# BEGIN SOLUTION
+library(rvest)
+library(dplyr)
+
+my_URL <- "https://www.billboard.com/charts/hot-100"
+entire_web_page <- read_html(my_URL)
+entire_web_page
+str(entire_web_page)
+
+#body_nodes <- entire_web_page |>
+# html_node("body") |>
+# html_children()
+#body_nodes
+#
+#body_nodes |>
+# html_children()
+
+# get song ranking and store in vector
+rank <- entire_web_page |> 
+  rvest::html_nodes('ul.o-chart-results-list-row') |> 
+  xml2::xml_attr('data-detail-target')
+# check it has length 100
+length(rank)
+
+
+# get song title and store in vector
+title <- entire_web_page |> 
+  rvest::html_nodes('h3.c-title.a-no-trucate.a-font-primary-bold-s.u-letter-spacing-0021') |> 
+  rvest::html_text() |> 
+  trimws()
+# check it is of length 100
+length(title)
+
+# get artist name and store in vector
+artist <- entire_web_page |> 
+  rvest::html_nodes('span.c-label.a-no-trucate.a-font-primary-s') |> 
+  rvest::html_text() |> 
+  trimws()
+# check it is of length 100
+length(artist)
+
+chart_df <- data.frame(rank, artist, title)
+chart_df  |> 
+  head(10)
+
+
+
+
+# END SOLUTION
+```
+
+
+
+
+

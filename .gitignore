@@ -1,0 +1,19 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+tests/answers.R
+tests/answers_WS.RData
+Homework-3-template.Rproj
+.DS_Store
+.Rproj
+0_HW3_test.Rmd
+0_HW3_test.html
+tests/UCI HAR Dataset/*
+tests/__MACOSX/*
+tests/dataset.zip
+data/UCI HAR Dataset/*
+data/__MACOSX/*
+data/dataset.zip
+UCI HAR Dataset/*
+tests/Answers.Rmd
